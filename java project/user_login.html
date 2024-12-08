@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradsy Login</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Existing styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .logo span {
+      font-size: 24px;
+      font-weight: 700;
+      margin-left: 10px;
+    }
+    .login-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .login-image {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-image img {
+      width: 80%;
+      border-radius: 0%;
+    }
+    .login-form {
+      width: 50%;
+      max-width: 400px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-form h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .login-form p {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+    .login-form .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .login-form .input-group input {
+      width: 100%;
+      padding: 10px;
+      padding-left: 30px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .login-form .input-group i {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+    }
+    .login-form .remember-me {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .login-form .remember-me input {
+      margin-right: 10px;
+    }
+    .login-form .btn {
+      width: 100%;
+      padding: 10px;
+      background: #5865f2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .login-form .forgot-password {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img alt="Gradsy logo" height="40" src="logo.png" width="40"/>
+    <span>GRADSY</span>
+  </div>
+  <div class="container">
+    <div class="login-section">
+      <div class="login-image">
+        <img alt="Person holding a tablet with headphones around their neck" height="400" src="login.png" width="400"/>
+      </div>
+      <form class="login-form" onsubmit="return validateLogin(event)">
+        <h2>Welcome back <span>👋</span></h2>
+        <p>Log in to your account</p>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input id="username" placeholder="Username" type="text"/>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input id="password" placeholder="Password" type="password"/>
+        </div>
+        <div class="remember-me">
+          <input id="remember" type="checkbox"/>
+          <label for="remember">Remember me</label>
+        </div>
+        <button type="submit" class="btn">Continue</button>
+        <div class="forgot-password">
+          <a href="forgot-password.html">Forgot Password?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function validateLogin(event) {
+      event.preventDefault();  // Prevent default form submission
+
+      // Get username and password values
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Simple validation (replace this with real logic)
+      if (username === 'Gradsy' && password === '12345') {
+        // Redirect to home.html on successful login
+        window.location.href = 'home.html';
+      } else {
+        alert('Invalid username or password. Please try again.');
+      }
+    }
+
+    // Allow pressing Enter to trigger login
+    document.getElementById('username').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        validateLogin(event);
+      }
+    });
+
+    document.getElementById('password').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        validateLogin(event);
+      }
+    });
+  </script>
+</body>
+</html>

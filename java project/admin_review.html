@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Assignment Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #6C63FF;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .logout-button {
+            background-color: #5a55db;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-button:hover {
+            background-color: #4943bb;
+        }
+
+        .container {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+
+        .card button {
+            background-color: #6C63FF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #5a55db;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-content textarea,
+        .modal-content input {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content .submit {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .modal-content .cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Assignment Review</h1>
+        <button class="logout-button" onclick="window.location.href='preface.html'">Logout</button>
+    </div>
+    <div class="container" id="assignment-container"></div>
+    <div class="modal" id="review-modal" style="display: none;">
+        <div class="modal-content">
+            <h2 id="modal-title">Review Assignment</h2>
+            <p id="modal-student"></p>
+            <textarea id="feedback" rows="1" placeholder="Enter your feedback"></textarea>
+            <input type="text" id="grade" placeholder="Enter grade (e.g., 4.5 , 5)" />
+            <button class="submit" onclick="submitReview()">Submit</button>
+            <button class="cancel" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+    <script>
+        const assignments = [
+            { id: 1, studentName: 'Himaja', title: 'Physics Assignment-2', submissionDate: '10-09-24', status: 'Reviewed', feedback: 'Excellent!', grade: '4' },
+            { id: 2, studentName: 'Jenisha', title: 'Java Assignment-3', submissionDate: '15-09-24', status: 'Pending', feedback: '', grade: '' },
+            { id: 3, studentName: 'Uday', title: 'C Assignment-2', submissionDate: '7-10-24', status: 'Pending', feedback: '', grade: '' },
+            { id: 4, studentName: 'Paul', title: 'Maths Assignment-4', submissionDate: '11-11-24', status: 'Pending', feedback: '', grade: '' },
+            { id: 5, studentName: 'Vivekta', title: 'Python Assignment-4', submissionDate: '29-10-24', status: 'Reviewed', feedback: 'Good!', grade:'3.5' },
+        ];
+
+        function loadAssignments() {
+            const container = document.getElementById('assignment-container');
+            container.innerHTML = '';
+
+            assignments.forEach(assignment => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <h2>${assignment.title}</h2>
+                    <p><strong>Student:</strong> ${assignment.studentName}</p>
+                    <p><strong>Submission Date:</strong> ${assignment.submissionDate}</p>
+                    <p><strong>Status:</strong> ${assignment.status}</p>
+                    <button onclick="openReviewModal(${assignment.id})">Review</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+        function openReviewModal(id) {
+            const assignment = assignments.find(a => a.id === id);
+            document.getElementById('modal-title').textContent = assignment.title;
+            document.getElementById('modal-student').textContent = `Student : ${assignment.studentName}`;
+            document.getElementById('feedback').value = assignment.feedback || '';
+            document.getElementById('grade').value = assignment.grade || '';
+            document.getElementById('review-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('review-modal').style.display = 'none';
+        }
+
+        function submitReview() {
+            const feedback = document.getElementById('feedback').value;
+            const grade = document.getElementById('grade').value;
+            alert(`Feedback: ${feedback}\nGrade: ${grade}`);
+            closeModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAssignments);
+    </script>
+</body>
+</html>

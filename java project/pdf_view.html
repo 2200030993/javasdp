@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF View</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button {
+            background-color: #4a4aff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3a3aff;
+        }
+    </style>
+</head>
+<body>
+    <h1>View PDF Document</h1>
+    <div class="pdf-container">
+        <iframe src="java_removed.pdf" width="100%" height="100%"></iframe>
+    </div>
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='submit.html'">Submit</button>
+        <button class="button" onclick="window.location.href='dashboard.html'">Cancel</button>
+    </div>
+</body>
+</html>

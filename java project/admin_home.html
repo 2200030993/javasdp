@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecting Department</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        /* Style for top navigation bar */
+        .navbar {
+            background-color: #6C63FF; /* Tailwind color gray-800 */
+            padding: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed;
+            height: 25px;
+            top: 0;
+            left: 0;
+        }
+        .navbar h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 8px 16px;
+            margin-top: 2%;
+            color: #f0f0f0;
+        }
+        /* Style for logout button in the navbar */
+        .logout-button {
+            background-color: #6C63FF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 25px;
+        }
+        .logout-button:hover {
+            color: rgb(218, 192, 192);
+        }
+        h1 {
+            font-size: 2em;
+            color: #0e0d0d;
+            margin-top: 100px; /* Adjusted for navbar */
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #6C63FF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6C63FF;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top navigation bar with Logout button -->
+    <div class="navbar">
+        <h1>Department Selection</h1>
+        <button class="logout-button" onclick="window.location.href='preface.html'">Logout</button>
+    </div>
+
+    <h1>Select your department</h1>
+    <select id="department-select">
+        <option value="" disabled selected>Select your department</option>
+        <option value="computer-science">Computer Science</option>
+        <option value="mathematics">Mathematics</option>
+        <option value="physics">Physics</option>
+        <option value="chemistry">Chemistry</option>
+        <option value="biology">Biology</option>
+        <option value="literature">Literature</option>
+    </select>
+    <div class="button-container">
+        <button onclick="gradeAssignments()">Grade Assignments</button>
+    </div>
+
+    <script>
+        function gradeAssignments() {
+            const departmentSelect = document.getElementById('department-select');
+            if (departmentSelect.value === "") {
+                alert("Please select a department before proceeding.");
+            } else {
+                window.location.href = 'admin_review.html'; // Redirect to admin_review.html
+            }
+        }
+    </script>
+</body>
+</html>
